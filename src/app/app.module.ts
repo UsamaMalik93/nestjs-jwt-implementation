@@ -23,8 +23,6 @@ import { AuthModule } from 'src/auth/auth.module';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('DB_URL'),
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
       }),
     }),
     AuthModule,
