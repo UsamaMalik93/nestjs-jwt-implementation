@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from 'src/auth/auth.module';
+import { ProfileModule } from 'src/profile/profile.module';
 
 @Module({
   // imports: [
@@ -25,6 +26,7 @@ import { AuthModule } from 'src/auth/auth.module';
         uri: configService.get<string>('DB_URL'),
       }),
     }),
+    ProfileModule,
     AuthModule,
   ],
 

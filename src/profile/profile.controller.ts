@@ -1,9 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { ProfileService } from './profile.service';
+import { RegisterProfileDto } from 'src/auth/dto/signup-profile.dto';
 
-@Controller()
+@Controller('/profiles')
 export class PorfileController {
-  constructor() {}
+  constructor(private readonly profileService: ProfileService) {}
 
-  @Get()
-  getProfile(): any {}
+  @Post()
+  async createProfile(@Body() registerProfileDto: RegisterProfileDto) {
+    console.log(
+      '🚀 ~ PorfileController ~ createProfile ~ registerProfileDto:',
+      registerProfileDto,
+    );
+    return await this.profileService.create(registerProfileDto);
+  }
 }
