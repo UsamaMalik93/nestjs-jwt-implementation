@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   // imports: [
@@ -22,8 +23,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('DB_URL'),
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
       }),
     }),
+    AuthModule,
   ],
 
   controllers: [AppController],
